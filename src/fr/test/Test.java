@@ -21,5 +21,5 @@ public class Test {
 		System.out.println("> Commandes récupérées");
 		new Fenetre();
 	}
-	
+
 }
