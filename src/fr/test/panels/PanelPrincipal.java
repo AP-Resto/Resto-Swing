@@ -17,10 +17,13 @@ public class PanelPrincipal extends JPanel {
 		
 		this.panelDetailCmd = new PanelDetailCommande();
 		this.panelDetailCmd.setBounds(330, 0, 950, 720);
-		
-		
+
 		this.setBackground(Color.green);
 		this.add(this.panelListingCmds);
 		this.add(this.panelDetailCmd);
+	}
+
+	public PanelDetailCommande getPanelDetailCmd() {
+		return panelDetailCmd;
 	}
 }
