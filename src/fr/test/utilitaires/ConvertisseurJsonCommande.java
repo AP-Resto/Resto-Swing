@@ -14,7 +14,7 @@ public class ConvertisseurJsonCommande {
         List<Commande> listeCommandes = new ArrayList<>();
 
         for (int i = 0; i < arrayCommandes.length(); i++) {
-            JSONObject commandeObj = arrayCommandes.getJSONObject(i);
+        	final JSONObject commandeObj = arrayCommandes.getJSONObject(i);
 
             final int idCommande = commandeObj.getInt("id_commande");
             final int idUser = commandeObj.getInt("id_user");
