@@ -15,6 +15,10 @@ public class Main {
 	public static Commande commandeSelectionnee = null;
 
 	public static void main(String[] args) {
+
+		try{
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		}catch(Exception e){}
 		System.out.println("> Récupération des commandes");
 		String reponseCommandes = NetworkUtils.request("http://localhost/site-resto/api/commandes_en_attente.php");
 		if(reponseCommandes.startsWith("Erreur")){

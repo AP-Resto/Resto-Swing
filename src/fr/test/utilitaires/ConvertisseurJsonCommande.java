@@ -33,9 +33,10 @@ public class ConvertisseurJsonCommande {
                 final int idLigne = ligneObj.getInt("id_ligne");
                 final int idProduit = ligneObj.getInt("id_produit");
                 final int qty = ligneObj.getInt("qte");
+                final String libProduit = ligneObj.getString("libelle_produit");
                 final double totalLigneHt = Double.parseDouble(ligneObj.getString("total_ligne_ht"));
 
-                Ligne ligne = new Ligne(idLigne, idProduit, qty, totalLigneHt);
+                Ligne ligne = new Ligne(idLigne, idProduit, libProduit, qty, totalLigneHt);
                 listeLignes.add(ligne);
             }
 
@@ -59,6 +60,4 @@ public class ConvertisseurJsonCommande {
 
         return "";
     }
-
-
 }
