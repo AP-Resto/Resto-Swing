@@ -50,7 +50,7 @@ public class PanelDetailCommande extends JPanel {
         EtatLabel.setBounds(20, 80, 400, 30);
         this.add(EtatLabel);
         
-        MontantLabel = new JLabel("Montant Total (TTC) : " + commandeSelectionnee.getTotalCommande());
+        MontantLabel = new JLabel("Montant Total (TTC) : " + commandeSelectionnee.getTotalCommande() + " €");
         MontantLabel.setFont(new Font("Arial", Font.BOLD, 16));
         MontantLabel.setForeground(Color.black);
         MontantLabel.setBounds(20, 110, 400, 30);

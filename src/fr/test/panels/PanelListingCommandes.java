@@ -13,9 +13,12 @@ import javax.swing.*;
 
 public class PanelListingCommandes extends JPanel {
 
+    JScrollPane scrollPane = new JScrollPane(); // Ajout du JScrollPane contenant ce panneau
+
     public PanelListingCommandes() {
         this.setLayout(null);
         this.ajouterComposant();
+        this.add(scrollPane);
     }
 
 
