@@ -1,21 +1,16 @@
 package fr.test.utilitaires;
 
-/*
- * RestoSwing
- * Classe utilitaire de gestion des connexions Internet
- * Adaptée de celle que j'utilise avec Android
- */
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 
-/**
- *
- * @author jef
- */
 public class NetworkUtils {
 
     /**
@@ -25,32 +20,30 @@ public class NetworkUtils {
      * @return la réponse JSON
      */
     public static String request(String url) {
-        // Log.d(MainActivity.LOG_TAG,url);
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;
         String jsonString = null;
         try {
             URL requestURL = new URL(url);
-            // Ouvre une connexion
-            urlConnection = (HttpURLConnection) requestURL.openConnection();
+            if (requestURL.getProtocol().toLowerCase().equals("https")) {
+                trustAllCertificates();
+                urlConnection = (HttpsURLConnection) requestURL.openConnection();
+            } else {
+                urlConnection = (HttpURLConnection) requestURL.openConnection();
+            }
             urlConnection.setRequestMethod("GET");
             urlConnection.connect();
             InputStream inputStream = urlConnection.getInputStream();
             StringBuffer buffer = new StringBuffer();
             if (inputStream == null) {
-                // Nothing to do.
                 return "Erreur : input stream == null";
             }
             reader = new BufferedReader(new InputStreamReader(inputStream));
             String line;
             while ((line = reader.readLine()) != null) {
-                /* Since it's JSON, adding a newline isn't necessary (it won't affect
-            parsing) but it does make debugging a *lot* easier if you print out the
-            completed buffer for debugging. */
-                buffer.append(line + "\n");
+                buffer.append(line).append("\n");
             }
             if (buffer.length() == 0) {
-                // Stream was empty.  No point in parsing.
                 System.out.println("Rien à charger, le buffer est vide");
                 return "Erreur : rien à afficher !";
             }
@@ -73,7 +66,31 @@ public class NetworkUtils {
                 }
             }
         }
-        //System.out.println(jsonString); // tests seulement
         return jsonString;
+    }
+
+    /*
+        Cette méthode permet d'ignorer les certificats SSL (utile pour XAMPP en mode développement / local)
+     */
+    private static void trustAllCertificates() {
+        TrustManager[] trustAllCerts = new TrustManager[] {
+                new X509TrustManager() {
+                    public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+                        return null;
+                    }
+                    public void checkClientTrusted(java.security.cert.X509Certificate[] certs, String authType) {
+                    }
+                    public void checkServerTrusted(java.security.cert.X509Certificate[] certs, String authType) {
+                    }
+                }
+        };
+
+        try {
+            SSLContext sc = SSLContext.getInstance("SSL");
+            sc.init(null, trustAllCerts, new java.security.SecureRandom());
+            HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
