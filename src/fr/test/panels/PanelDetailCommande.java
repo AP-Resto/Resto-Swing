@@ -4,6 +4,9 @@ import fr.test.structures.Commande;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
@@ -17,6 +20,7 @@ public class PanelDetailCommande extends JPanel {
 	private JLabel UserLabel;
 
 	private Font arial = new Font("Arial", Font.PLAIN, 14);
+	
 
 	public PanelDetailCommande() {
 		this.setLayout(null);
@@ -65,9 +69,46 @@ public class PanelDetailCommande extends JPanel {
 		UserLabel.setBounds(20, 140, 400, 30);
 		UserLabel.setFont(arial);
 		this.add(UserLabel);
+		
+		// Création des boutons avec des images
+		ImageIcon croixIcon = new ImageIcon(getClass().getResource("/image/effacer.png"));
 
+		JButton croixButton = new JButton("Refuser la commande", new ImageIcon(croixIcon.getImage().getScaledInstance(32, 32, Image.SCALE_DEFAULT)));
+		croixButton.setBounds(56, 570, 286, 77);
+		croixButton.setHorizontalTextPosition(SwingConstants.RIGHT); // Texte à droite de l'icône
+	    croixButton.setVerticalTextPosition(SwingConstants.CENTER); // Texte centré verticalement
+		croixButton.addActionListener((ActionListener) new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// Action à effectuer lorsque le bouton croix est cliqué
+			}
+		});
+		this.add(croixButton);
+
+		JButton sablierButton = new JButton("", new ImageIcon(getClass().getResource("/image/en_attente.png")));
+		sablierButton.setBounds(435, 570, 77, 77);
+		sablierButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// Action à effectuer lorsque le bouton sablier est cliqué
+			}
+		});
+		this.add(sablierButton);
+
+		ImageIcon validerIcon = new ImageIcon(getClass().getResource("/image/valider.png"));		
+		JButton validerButton = new JButton("Commande prête", new ImageIcon(validerIcon.getImage().getScaledInstance(32, 32, Image.SCALE_DEFAULT)));
+		
+		validerButton.setBounds(600, 570, 286, 77);
+		validerButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// Action à effectuer lorsque le bouton valider est cliqué
+			}
+		});
+		this.add(validerButton);
 	}
-
+	
+	
 	public void setCommande(Commande cmd) {
 		this.commandeSelectionnee = cmd;
 		this.ajouterComposants();
