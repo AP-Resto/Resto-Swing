@@ -30,7 +30,6 @@ public class PanelDetailCommande extends JPanel {
 		this.removeAll();
 		this.tableauLignesCmd = new TableauLigneComandes();
 		this.tableauLignesCmd.setBounds(55, 215, 831, 350);
-		this.tableauLignesCmd.setBackground(Color.black);
 		this.add(this.tableauLignesCmd);
 
 		// Ajout d'un JLabel pour afficher l'ID de la commande
