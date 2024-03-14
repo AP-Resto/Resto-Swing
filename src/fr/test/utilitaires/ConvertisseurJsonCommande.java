@@ -23,6 +23,11 @@ public class ConvertisseurJsonCommande {
             final double totalCommande = Double.parseDouble(commandeObj.getString("total_commande"));
             final int typeConso = commandeObj.getInt("type_conso");
 
+            final JSONObject userobject = commandeObj.getJSONObject("user");
+
+            final String loginUtilisateur = userobject.getString("login");
+            final String mailUtilisateur = userobject.getString("email");
+
             final JSONArray lignes = commandeObj.getJSONArray("lignes");
 
             final List<Ligne> listeLignes = new ArrayList<>();
@@ -40,7 +45,8 @@ public class ConvertisseurJsonCommande {
                 listeLignes.add(ligne);
             }
 
-            final Commande commande = new Commande(idCommande, idUser, idEtat, date, totalCommande, typeConso, listeLignes);
+            final Commande commande = new Commande(idCommande, idUser, idEtat, date, totalCommande, typeConso, listeLignes, loginUtilisateur, mailUtilisateur);
+
             listeCommandes.add(commande);
         }
 

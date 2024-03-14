@@ -1,6 +1,7 @@
 package fr.test.panels;
 
 import fr.test.structures.Commande;
+import fr.test.utilitaires.ConvertisseurJsonCommande;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -50,20 +51,20 @@ public class PanelDetailCommande extends JPanel {
 		DateLabel.setBounds(20, 50, 400, 30);
 		this.add(DateLabel);
 
-		EtatLabel = new JLabel("<html><b>Etat de la commande : </b>" + commandeSelectionnee.getIdEtat());
+		EtatLabel = new JLabel("<html><b>Etat de la commande : </b>" + ConvertisseurJsonCommande.getLibelleEtat(commandeSelectionnee.getIdEtat()));
 		EtatLabel.setForeground(Color.black);
 		EtatLabel.setBounds(20, 80, 400, 30);
 		EtatLabel.setFont(arial);
 		this.add(EtatLabel);
 
 		MontantLabel = new JLabel(
-				"<html><b>Montant Total (TTC) : </b>" + commandeSelectionnee.getTotalCommande() + " €");
+				"<html><b>Montant Total (TTC) : </b>" + String.format("%.2f", commandeSelectionnee.getTotalCommande()) + " €");
 		MontantLabel.setForeground(Color.black);
 		MontantLabel.setBounds(20, 110, 400, 30);
 		MontantLabel.setFont(arial);
 		this.add(MontantLabel);
 
-		UserLabel = new JLabel("<html><b>Auteur de la commande : </b>" + commandeSelectionnee.getIdUser());
+		UserLabel = new JLabel("<html><b>Auteur de la commande : </b>" + commandeSelectionnee.getLoginUser() + " (<u>" + commandeSelectionnee.getEmailUser() + "</u>)");
 		UserLabel.setForeground(Color.black);
 		UserLabel.setBounds(20, 140, 400, 30);
 		UserLabel.setFont(arial);

@@ -104,7 +104,7 @@ public class TableauLigneComandes extends JPanel {
 			this.add(qteCommande);
 
 			JLabel TotalLigne = new JLabel(
-					"<html><center><b>" + cmd.getTotalLigneHt() + " €"
+					"<html><center><b>" + String.format("%.2f", cmd.getTotalLigneHt()) + " €"
 			);
 			TotalLigne.setFont(TotalLigne.getFont().deriveFont(15F));
 			TotalLigne.setBounds(690, i * 40+20, 330, 80);
