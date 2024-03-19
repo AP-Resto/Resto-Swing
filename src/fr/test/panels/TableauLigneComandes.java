@@ -1,10 +1,13 @@
 package fr.test.panels;
 
 import fr.test.Main;
+import fr.test.panels.listeners.ChangerFondEnFonctionDuSurvol;
 import fr.test.structures.*;
 import fr.test.utilitaires.ConvertisseurJsonCommande;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.util.List;
 
@@ -38,7 +41,7 @@ public class TableauLigneComandes extends JPanel {
 		verticalScrollBar.setUnitIncrement(20);
 
 
-		JLabel idcmd = new JLabel(
+		/*JLabel idcmd = new JLabel(
 				"<html><b>Identifiant </b>");
 		idcmd.setForeground(Color.black);
 		idcmd.setFont(arial.deriveFont(18F));
@@ -65,64 +68,77 @@ public class TableauLigneComandes extends JPanel {
 		prixUT.setForeground(Color.black);
 		prixUT.setFont(arial.deriveFont(18F));
 		prixUT.setBounds(690, 10, 91, 39);
-		this.add(prixUT);
+		this.add(prixUT);*/
 
 
 		List<Ligne> lignes = this.commandeSelectionne.getLignes();
 
 		for (int i = 0; i < lignes.size(); i++) {
-			Ligne cmd = lignes.get(i);
+            Ligne cmd = lignes.get(i);
+
+            JPanel panelLigne = new JPanel();
+            panelLigne.addMouseListener(new ChangerFondEnFonctionDuSurvol());
+            panelLigne.setPreferredSize(new Dimension(800, 40));
+            panelLigne.setLayout(null);
 
 			JLabel IdLigne = new JLabel(
 					"<html><center><b> #" + cmd.getIdLigne(),
 					SwingConstants.CENTER
 			);
 			IdLigne.setFont(IdLigne.getFont().deriveFont(15F));
-			IdLigne.setBounds(10, i * 40+20, 75, 80);
+			IdLigne.setBounds(10, 13, 75, 15);
 			IdLigne.setBackground(Color.gray);
 			IdLigne.setForeground(Color.black);
-			this.add(IdLigne);
+            panelLigne.add(IdLigne);
 
 
 			JLabel libProduit = new JLabel(
 					"<html><center><b>" + cmd.getLibelle_produit()
 			);
 			libProduit.setFont(libProduit.getFont().deriveFont(15F));
-			libProduit.setBounds(230, i * 40+20, 330, 80);
+			libProduit.setBounds(230, 13, 330, 15);
 			libProduit.setBackground(Color.gray);
 			libProduit.setForeground(Color.black);
-			this.add(libProduit);
+            panelLigne.add(libProduit);
 
 			JLabel qteCommande = new JLabel(
 					"<html><center><b>" + cmd.getQte(),
 					SwingConstants.CENTER
 			);
 			qteCommande.setFont(qteCommande.getFont().deriveFont(15F));
-			qteCommande.setBounds(460, i * 40+20, 50, 80);
+			qteCommande.setBounds(460, 13, 50, 15);
 			qteCommande.setBackground(Color.gray);
 			qteCommande.setForeground(Color.black);
-			this.add(qteCommande);
+            panelLigne.add(qteCommande);
 
 			JLabel TotalLigne = new JLabel(
 					"<html><center><b>" + String.format("%.2f", cmd.getTotalLigneHt()) + " €"
 			);
 			TotalLigne.setFont(TotalLigne.getFont().deriveFont(15F));
-			TotalLigne.setBounds(690, i * 40+20, 330, 80);
+			TotalLigne.setBounds(690, 13, 330, 15);
 			TotalLigne.setBackground(Color.gray);
 			TotalLigne.setForeground(Color.black);
-			this.add(TotalLigne);
-		}
+            panelLigne.add(TotalLigne);
+
+            panelLigne.revalidate();
+            contentPanel.add(panelLigne);
+
+        }
+
+        contentPanel.setBackground(Color.WHITE);
 
 		// Ajout du panel de contenu à la scroll pane
 		this.scrollPane.setViewportView(contentPanel);
+        this.scrollPane.setLayout(new ScrollPaneLayout());
 
 		// Définir la politique de défilement
 		this.scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
 		// Définir la taille de la scroll pane
-		this.scrollPane.setBounds(810, 0, 20, 350);
+		this.scrollPane.setBounds(0, 0, 831, 350);
 
 		this.add(this.scrollPane);
+        scrollPane.revalidate();
 	}
 
 	public void setCommandeSelectionne(Commande commandeSelectionne) {

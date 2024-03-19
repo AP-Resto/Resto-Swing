@@ -46,7 +46,6 @@ public class ConvertisseurJsonCommande {
             }
 
             final Commande commande = new Commande(idCommande, idUser, idEtat, date, totalCommande, typeConso, listeLignes, loginUtilisateur, mailUtilisateur);
-
             listeCommandes.add(commande);
         }
 

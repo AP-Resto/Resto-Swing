@@ -46,20 +46,21 @@ public class Main {
 			return;
 		}
 
-		Main.commandes = ConvertisseurJsonCommande.conversionJsonVersCommandes(commandesObjet.getJSONArray("commandes"));
+		//Main.commandes = ConvertisseurJsonCommande.conversionJsonVersCommandes(commandesObjet.getJSONArray("commandes"));
+		Main.commandes = hydrateCommandes();
 
 		//commandes = hydrateCommandes();
 		new Fenetre();
 	}
 
-	/*private static List<Commande> hydrateCommandes() {
+	private static List<Commande> hydrateCommandes() {
 		final List<Commande> commandesDeTest = new ArrayList<>();
 
 		final Random random = new Random();
 
 		for(int i = 0; i < 10; i++){
 			final List<Ligne> lignes = new ArrayList<>();
-			for(int j = 0; j < 3; j++){
+			for(int j = 0; j < 20; j++){
 				lignes.add(new Ligne(
 						random.nextInt(),
 						random.nextInt(),
@@ -84,6 +85,6 @@ public class Main {
 		}
 
 		return commandesDeTest;
-	}*/
+	}
 
 }
