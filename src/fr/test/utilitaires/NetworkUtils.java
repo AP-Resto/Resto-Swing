@@ -69,10 +69,12 @@ public class NetworkUtils {
         return jsonString;
     }
 
-    /*
-        Cette méthode permet d'ignorer les certificats SSL (utile pour XAMPP en mode développement / local)
+    /**
+     * Cette méthode permet de désactiver la vérification
+     * des certificats SSL utilisés par l'HTTPS.
      */
     private static void trustAllCertificates() {
+        // On instancie la classe qui s'occupe de vérifier les certificats et on enlève les vérifications
         TrustManager[] trustAllCerts = new TrustManager[] {
                 new X509TrustManager() {
                     public java.security.cert.X509Certificate[] getAcceptedIssuers() {
@@ -86,8 +88,12 @@ public class NetworkUtils {
         };
 
         try {
+            // On récupère le contexte SSL
             SSLContext sc = SSLContext.getInstance("SSL");
+            // On demande au contexte de génerer une clé de sécurité pour notre manager
             sc.init(null, trustAllCerts, new java.security.SecureRandom());
+
+            // On lui dit d'utiiser notre gestionnaire "trustAllCerts"
             HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
         } catch (Exception e) {
             e.printStackTrace();
