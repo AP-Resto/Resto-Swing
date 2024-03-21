@@ -19,6 +19,7 @@ public class ConvertisseurJsonCommande {
             final int idCommande = commandeObj.getInt("id_commande");
             final int idUser = commandeObj.getInt("id_user");
             final int idEtat = commandeObj.getInt("id_etat");
+
             final String date = commandeObj.getString("date");
             final double totalCommande = Double.parseDouble(commandeObj.getString("total_commande"));
             final int typeConso = commandeObj.getInt("type_conso");

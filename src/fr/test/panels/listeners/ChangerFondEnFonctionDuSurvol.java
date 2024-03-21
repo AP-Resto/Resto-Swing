@@ -26,7 +26,6 @@ public class ChangerFondEnFonctionDuSurvol implements MouseListener {
     @Override
     public void mouseEntered(MouseEvent e) {
         ((JComponent)e.getSource()).setBackground(new Color(0xD4D4D4));
-
         ((JComponent)e.getSource()).revalidate();
     }
 

@@ -50,7 +50,7 @@ public class TableauLigneComandes extends JPanel {
             panelLigne.setBackground(Color.white);
             panelLigne.setPreferredSize(new Dimension(800, 40));
             panelLigne.setLayout(null);
-
+			panelLigne.setMaximumSize(new Dimension(1920, 40));
 			JLabel IdLigne = new JLabel(
 					"<html><center><b> #" + cmd.getIdLigne(),
 					SwingConstants.CENTER

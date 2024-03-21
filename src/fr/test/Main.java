@@ -46,8 +46,7 @@ public class Main {
 			return;
 		}
 
-		//Main.commandes = ConvertisseurJsonCommande.conversionJsonVersCommandes(commandesObjet.getJSONArray("commandes"));
-		Main.commandes = hydrateCommandes();
+		Main.commandes = ConvertisseurJsonCommande.conversionJsonVersCommandes(commandesObjet.getJSONArray("commandes"));
 
 		//commandes = hydrateCommandes();
 		new Fenetre();

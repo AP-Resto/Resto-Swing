@@ -95,4 +95,8 @@ public class Commande {
     public String getEmailUser() {
         return emailUser;
     }
+
+
+    public void action(){}
+    public void action_commandePrete(){}
 }
