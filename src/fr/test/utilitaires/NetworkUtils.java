@@ -1,5 +1,7 @@
 package fr.test.utilitaires;
 
+import fr.test.Main;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,7 +26,7 @@ public class NetworkUtils {
         BufferedReader reader = null;
         String jsonString = null;
         try {
-            URL requestURL = new URL(url);
+            URL requestURL = new URL(Main.API_BASE_URL.concat(url));
             if (requestURL.getProtocol().toLowerCase().equals("https")) {
                 trustAllCertificates();
                 urlConnection = (HttpsURLConnection) requestURL.openConnection();

@@ -1,5 +1,7 @@
 package fr.test.structures;
 
+import fr.test.utilitaires.NetworkUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -96,7 +98,18 @@ public class Commande {
         return emailUser;
     }
 
+    public void action_commandeRefusee(){
+        String response = NetworkUtils.request("/commande_refuser?id_commande=" + this.id_commande);
+        System.out.println("JSON réponse refusée: " + response);
+    }
+    public void action_commandePrete(){
+        String response = NetworkUtils.request("/commande_terminer?id_commande=" + this.id_commande);
+        System.out.println("JSON réponse terminée: " + response);
+    }
+    public void action_commandeAcceptee(){
+        String response = NetworkUtils.request("/commande_accepter?id_commande=" + this.id_commande);
+        System.out.println("JSON réponse commande acceptée: " + response);
 
-    public void action(){}
-    public void action_commandePrete(){}
+    }
+
 }

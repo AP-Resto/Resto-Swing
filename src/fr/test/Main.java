@@ -13,6 +13,8 @@ import java.util.Random;
 
 public class Main {
 
+	public static final String API_BASE_URL = "https://localhost/site-resto/api";
+
 	public static List<Commande> commandes = new ArrayList<>();
 	public static Commande commandeSelectionnee = null;
 
@@ -23,7 +25,7 @@ public class Main {
 		}catch(Exception e){}
 
 		System.out.println("> Récupération des commandes");
-		String reponseCommandes = NetworkUtils.request("https://localhost/site-resto/api/commandes_en_attente.php");
+		String reponseCommandes = NetworkUtils.request("/commandes_en_attente.php");
 		if(reponseCommandes.startsWith("Erreur")){
 			JOptionPane.showMessageDialog(
 					null,
