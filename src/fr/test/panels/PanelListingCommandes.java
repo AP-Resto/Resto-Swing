@@ -39,10 +39,9 @@ public class PanelListingCommandes extends JPanel {
 
             bouton.setFont(bouton.getFont().deriveFont(15F));
             bouton.setBounds(0, i * 80, 330, 80);
-            bouton.setBackground(Color.gray);
+            bouton.setBackground(new Color(0xFF9A9A9A));
             bouton.setForeground(Color.black);
             bouton.setFocusPainted(false);
-
             bouton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {

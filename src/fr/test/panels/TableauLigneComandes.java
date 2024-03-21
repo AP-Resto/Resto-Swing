@@ -40,37 +40,6 @@ public class TableauLigneComandes extends JPanel {
 		final JScrollBar verticalScrollBar = this.scrollPane.getVerticalScrollBar();
 		verticalScrollBar.setUnitIncrement(20);
 
-
-		/*JLabel idcmd = new JLabel(
-				"<html><b>Identifiant </b>");
-		idcmd.setForeground(Color.black);
-		idcmd.setFont(arial.deriveFont(18F));
-		idcmd.setBounds(20, 10, 91, 39);
-		this.add(idcmd);
-
-		JLabel denree = new JLabel(
-		"<html><b>Denrée </b>");
-		denree.setForeground(Color.black);
-		denree.setFont(arial.deriveFont(18F));
-		denree.setBounds(230, 10, 91, 39);
-		this.add(denree);
-
-		JLabel quantite = new JLabel(
-				"<html><b>Quantité </b>");
-		quantite.setForeground(Color.black);
-		quantite.setFont(arial.deriveFont(18F));
-		quantite.setBounds(460, 10, 91, 39);
-		this.add(quantite);
-
-
-		JLabel prixUT = new JLabel(
-				"<html><b>Prix Unité </b>");
-		prixUT.setForeground(Color.black);
-		prixUT.setFont(arial.deriveFont(18F));
-		prixUT.setBounds(690, 10, 91, 39);
-		this.add(prixUT);*/
-
-
 		List<Ligne> lignes = this.commandeSelectionne.getLignes();
 
 		for (int i = 0; i < lignes.size(); i++) {
@@ -78,6 +47,7 @@ public class TableauLigneComandes extends JPanel {
 
             JPanel panelLigne = new JPanel();
             panelLigne.addMouseListener(new ChangerFondEnFonctionDuSurvol());
+            panelLigne.setBackground(Color.white);
             panelLigne.setPreferredSize(new Dimension(800, 40));
             panelLigne.setLayout(null);
 

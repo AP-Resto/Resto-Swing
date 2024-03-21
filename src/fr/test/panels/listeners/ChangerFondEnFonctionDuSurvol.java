@@ -6,8 +6,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class ChangerFondEnFonctionDuSurvol implements MouseListener {
-    private boolean estSurvolee = false;
-
     @Override
     public void mouseClicked(MouseEvent e) {
 
@@ -27,9 +25,9 @@ public class ChangerFondEnFonctionDuSurvol implements MouseListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        ((JComponent)e.getSource()).setBackground(new Color(0xFF9A9A9A));
-        ((JComponent)e.getSource()).revalidate();
+        ((JComponent)e.getSource()).setBackground(new Color(0xD4D4D4));
 
+        ((JComponent)e.getSource()).revalidate();
     }
 
     @Override
