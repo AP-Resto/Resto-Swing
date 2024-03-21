@@ -99,15 +99,15 @@ public class Commande {
     }
 
     public void action_commandeRefusee(){
-        String response = NetworkUtils.request("/commande_refuser?id_commande=" + this.id_commande);
+        String response = NetworkUtils.request("/commande_refuser.php?id_commande=" + this.id_commande);
         System.out.println("JSON réponse refusée: " + response);
     }
     public void action_commandePrete(){
-        String response = NetworkUtils.request("/commande_terminer?id_commande=" + this.id_commande);
+        String response = NetworkUtils.request("/commande_terminer.php?id_commande=" + this.id_commande);
         System.out.println("JSON réponse terminée: " + response);
     }
     public void action_commandeAcceptee(){
-        String response = NetworkUtils.request("/commande_accepter?id_commande=" + this.id_commande);
+        String response = NetworkUtils.request("/commande_accepter.php?id_commande=" + this.id_commande);
         System.out.println("JSON réponse commande acceptée: " + response);
 
     }

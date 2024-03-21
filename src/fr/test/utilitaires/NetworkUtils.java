@@ -16,7 +16,7 @@ import javax.net.ssl.X509TrustManager;
 public class NetworkUtils {
 
     /**
-     * Lance une requête REST et récupère une réponse JSON
+     * Lance une requête REST et récupère une réponse String
      *
      * @param url L'URL du service web
      * @return la réponse JSON

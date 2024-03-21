@@ -2,6 +2,7 @@ package fr.test.panels;
 
 import fr.test.structures.Commande;
 import fr.test.utilitaires.ConvertisseurJsonCommande;
+import fr.test.utilitaires.NetworkUtils;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -80,7 +81,7 @@ public class PanelDetailCommande extends JPanel {
 		croixButton.addActionListener((ActionListener) new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// Action à effectuer lorsque le bouton croix est cliqué
+				commandeSelectionnee.action_commandeRefusee();
 			}
 		});
 		this.add(croixButton);
@@ -90,7 +91,7 @@ public class PanelDetailCommande extends JPanel {
 		sablierButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// Action à effectuer lorsque le bouton sablier est cliqué
+				commandeSelectionnee.action_commandeAcceptee();
 			}
 		});
 		this.add(sablierButton);
@@ -102,7 +103,7 @@ public class PanelDetailCommande extends JPanel {
 		validerButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// Action à effectuer lorsque le bouton valider est cliqué
+				commandeSelectionnee.action_commandePrete();
 			}
 		});
 		this.add(validerButton);
