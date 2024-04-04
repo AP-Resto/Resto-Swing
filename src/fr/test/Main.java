@@ -8,6 +8,7 @@ import org.json.JSONObject;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 
@@ -29,7 +30,8 @@ public class Main {
 		if(reponseCommandes.startsWith("Erreur")){
 			JOptionPane.showMessageDialog(
 					null,
-					"Une erreur est survenue durant la récupération des commandes.\n" + reponseCommandes,
+					"<html>Une erreur est survenue durant la récupération des commandes.<br>"
+							+ "Vérifiez que vous avez mis le site RestoWeb dans <b color=\"red\">htdocs/site-resto</b><br><br><b>" + reponseCommandes + "</b>",
 					"Erreur lors de la récupération des commandes",
 					JOptionPane.ERROR_MESSAGE
 			);
@@ -41,7 +43,7 @@ public class Main {
 		if(!commandesObjet.getBoolean("success")){
 			JOptionPane.showMessageDialog(
 					null,
-					"L'API a renvoyé un success = false !\n" + reponseCommandes,
+					"L'API a renvoyé un success = false ! Il y a une erreur dans le PHP\n" + reponseCommandes,
 					"Erreur lors de la récupération des commandes",
 					JOptionPane.ERROR_MESSAGE
 			);
@@ -49,8 +51,10 @@ public class Main {
 		}
 
 		Main.commandes = ConvertisseurJsonCommande.conversionJsonVersCommandes(commandesObjet.getJSONArray("commandes"));
+		// Main.commandes = Main.hydrateCommandes();
 
-		//commandes = hydrateCommandes();
+		// Permet de trier sur idCommande pour les avoir dans l'ordre
+		commandes.sort(Comparator.comparingInt(Commande::getIdCommande));
 		new Fenetre();
 	}
 
@@ -63,7 +67,7 @@ public class Main {
 			final List<Ligne> lignes = new ArrayList<>();
 			for(int j = 0; j < 20; j++){
 				lignes.add(new Ligne(
-						random.nextInt(),
+						Math.abs(random.nextInt(120)),
 						random.nextInt(),
 						"Produit de test",
 						random.nextInt(),
@@ -71,7 +75,7 @@ public class Main {
 				));
 			}
 			Commande commande = new Commande(
-					random.nextInt(),
+					Math.abs(random.nextInt(120)),
 					random.nextInt(),
 					1,
 					"14/03/2024",
